@@ -1,3 +1,4 @@
 node_modules
 *.map
 *.js
+.DS_Store

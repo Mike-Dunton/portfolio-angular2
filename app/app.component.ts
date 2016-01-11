@@ -1,24 +1,20 @@
 import {Component} from 'angular2/core';
-import {ContentPaneComponent} from './content-pane.component';
-import {NavigationItem} from './navigation-item';
-import {SidebarPaneComponent} from './sidebar-pane.component';
+import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+
+import {MichaelDuntonComponent} from './components/michaelDunton/michael-dunton.component';
+import {KazooComponent} from './components/kazoo/kazoo.component';
 
 @Component({
     selector: 'portfolio',
-    template: `
-    <h1>{{title}}</h1>
-    <sidebar-pane (update)="onNavigationUpdate($event)"></sidebar-pane>
-    <content-pane [content]="selectedNavigationItem"></content-pane>
-    `,
-    directives: [ContentPaneComponent, SidebarPaneComponent],
+    styleUrls: ['./app/app.style.css'],
+    templateUrl: './app/app.view.html',
+    directives: [ROUTER_DIRECTIVES],
 })
-
+@RouteConfig([
+  {path:'/home', name: 'Home', component: MichaelDuntonComponent, useAsDefault: true},
+  {path:'/kazoo', name: 'Kazoo', component: KazooComponent}
+])
 
 export class AppComponent {
-    public title = "I am Michael Dunton!";
-    public selectedNavigationItem : NavigationItem;
-    onNavigationUpdate(navigationItem) {
-        console.log("Setting NavigationItem", navigationItem);
-        this.selectedNavigationItem = navigationItem;
-    }
+
 }
